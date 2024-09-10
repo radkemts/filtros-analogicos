@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+
+    font-family: "Open Sans", system-ui;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+}
+
+.formulario {
+    width: 300px;
+    margin: auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.fieldset {
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.div-input-text{
+    margin-bottom: 10px;
+}

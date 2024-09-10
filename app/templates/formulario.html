@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Início{% endblock %}
+
+{% block content %}
+    <form class="formulario" method="post" action="/resultado">
+        <fieldset class="fieldset">
+            <legend>Aproximação:</legend>
+            <input id="butterworth" name="approx" type="radio" value="butterworth" checked required>
+            <label for="butterworth">Butterworth</label>
+            <input id="chebyshev" name="approx" type="radio" value="chebyshev" required>
+            <label for="chebyshev">Chebyshev</label>
+<!--            <input id="chebyshev-inverso" type="checkbox" value="approx" required>-->
+<!--            <label for="chebyshev-inverso">Chebyshev Inverso</label>-->
+<!--            <input id="eliptico" type="checkbox" value="approx" required>-->
+<!--            <label for="eliptico">Elíptico</label>-->
+        </fieldset>
+        <fieldset class="fieldset">
+            <legend>Especificações:</legend>
+            <div class="div-input-text">
+                <label for="a-pass">a<sub>pass</sub></label>
+                <input id="a-pass" name="a-pass" type="text" required>
+            </div>
+            <div class="div-input-text">
+                <label for="a-stop">a<sub>stop</sub></label>
+                <input id="a-stop" name="a-stop" type="text" required>
+            </div>
+            <div class="div-input-text">
+                <label for="f-pass1">f<sub>pass1</sub></label>
+                <input id="f-pass1" name="f-pass1" type="text" required>
+            </div>
+            <div class="div-input-text">
+                <label for="f-stop1">f<sub>stop1</sub></label>
+                <input id="f-stop1" name="f-stop1" type="text" required>
+            </div>
+            <div class="div-input-text">
+                <label for="f-pass2">f<sub>pass2</sub></label>
+                <input id="f-pass2" name="f-pass2" type="text">
+            </div>
+            <div class="div-input-text">
+                <label for="f-stop2">f<sub>stop2</sub></label>
+                <input id="f-stop2" name="f-stop2" type="text">
+            </div>
+        </fieldset>
+        <fieldset class="fieldset">
+            <legend>Unidade:</legend>
+            <input id="hertz" name="unidade" type="radio" value="hertz" checked required>
+            <label for="hertz">Hz</label>
+            <input id="radianos" name="unidade" type="radio" value="radianos" required>
+            <label for="radianos">rad/s</label>
+        </fieldset>
+        <input class="botao-enviar" type="submit" value="Projetar">
+    </form>
+{% endblock %}
