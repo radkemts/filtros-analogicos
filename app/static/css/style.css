@@ -1,3 +1,11 @@
+:root{
+    --cor-1: #264653;
+    --cor-2: #2A9D8F;
+    --cor-3: #E9C46A;
+    --cor-4: #F4A261;
+    --cor-5: #E76F51;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -7,29 +15,94 @@
     font-weight: 500;
     font-style: normal;
     font-variation-settings: "wdth" 100;
+    font-variation-settings: "wdth" 100;
+    color: #3C3C3C;
 }
 
 body {
     display: flex;
     flex-direction: column;
+    background-color: #3D3A4B;
+    padding: 10px;
 }
 
 .container {
+    max-width: 500px;
+    width: 100%;
+    background-color: #7A9E9F;
+    text-align: center;
+    padding: 10px;
+    margin: 0 auto 10px auto;
+    box-sizing: border-box;
     display: flex;
+    box-shadow: 0 0 5px 1px #000;
+    justify-content: center;
+}
+
+.container:last-child {
+    margin-bottom: 0;
 }
 
 .formulario {
-    width: 300px;
-    margin: auto;
     padding: 20px;
     box-sizing: border-box;
+    width: 100%;
+}
+
+.formulario * {
+    font-size: 16px;
 }
 
 .fieldset {
     margin-bottom: 10px;
-    padding: 5px;
+    padding: 10px;
+    border: none;
 }
 
-.div-input-text{
-    margin-bottom: 10px;
+.fieldset legend {
+    text-align: left;
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+.div-input-radio {
+    width: 200px;
+    text-align: left;
+    margin: 0 auto 10px auto;
+}
+
+.div-input-radio:last-child{
+    margin-bottom: 0px;
+}
+
+.div-input-radio input {
+    cursor: pointer;
+}
+
+.div-input-text {
+    max-width: 200px;
+    margin: 0 auto 10px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.div-input-text input {
+    max-width: 100px;
+    width: 100%;
+    border-radius: 5px;
+    border-style: none;
+    padding: 10px;
+    margin-right: 0;
+}
+
+.botao-enviar {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #13293D;
+    font-size: 16px;
+    color: #fff;
+    box-shadow: 0 0 5px 1px #000;
+    cursor: pointer;
 }
