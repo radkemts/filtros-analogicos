@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Resultado Butterworth{% endblock %}
+
+{% block content %}
+    <h2>Resultado do Filtro Passa-baixas Butterworth</h2>
+    <section class="sub-container">
+        <p>Especificações:</p>
+        <div class="especificacoes">
+            <p>a<sub>pass</sub>: {{ resultado['a_pass'] | int }} dB</p>
+            <p>a<sub>stop</sub>: {{ resultado['a_stop'] | int }} dB</p>
+            <p>
+                {% if resultado['unidade'] == 'hertz' %}
+                    f<sub>pass</sub>: {{ resultado['f_pass1'] | int }} Hz
+                {% else %}
+                    &omega;<sub>pass</sub>: {{ resultado['w_pass1'] | float }} rad/s
+                {% endif %}
+            </p>
+            <p>
+                {% if resultado['unidade'] == 'hertz' %}
+                    f<sub>stop</sub>: {{ resultado['f_stop1'] | int }} Hz
+                {% else %}
+                    &omega;<sub>stop</sub>: {{ resultado['w_stop1'] | float }} rad/s
+                {% endif %}
+            </p>
+        </div>
+        <div class="container-imagem">
+            <img src="{{ url_for('static', filename='img/filtro.svg') }}" alt="">
+        </div>
+    </section>
+    <section>
+
+    </section>
+    <section>
+        {% block resultado %}
+            <pre>{{ resultado | tojson(4) }}</pre>
+        {% endblock %}
+    </section>
+{% endblock %}

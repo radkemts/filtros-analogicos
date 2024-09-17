@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Resultado{% endblock %}
+{% block title %}Resultado Chebyshev{% endblock %}
 
 {% block content %}
-    <h2>Resultado do filtro</h2>
+    <h2>Resultado do Filtro Passa-baixas Chebyshev</h2>
     <section>
         <p>Especificações:</p>
         <p>a<sub>pass</sub>: {{ resultado['a_pass'] | int }} dB</p>
@@ -42,6 +42,8 @@
         {% endif %}
     </section>
     <section>
-        
+        {% block resultado %}
+            <pre>{{ resultado | tojson(4) }}</pre>
+        {% endblock %}
     </section>
 {% endblock %}

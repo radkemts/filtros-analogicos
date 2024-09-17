@@ -40,35 +40,3 @@ def normalized_low_pass(a_pass, a_stop, w_pass, w_stop):
             'ganho': k
         }
     }
-
-def low_pass(a_pass, a_stop, w_pass, w_stop):
-    w_0 = w_pass
-
-    resultado = normalized_low_pass(a_pass, a_stop, w_pass, w_stop)
-
-    zeros = resultado['Hn']['zeros']
-    polos = resultado['Hn']['polos']
-    ganho = resultado['Hn']['ganho']
-
-    z = []
-    p = []
-    k = []
-
-    for i, polo in enumerate(polos):
-        if i == 0 and polo[0] == 0:
-            p.append((0, polo[1], polo[2] * w_0))
-            k.append(ganho[i] * w_0)
-        else:
-            p.append((1, polo[1] * w_0, polo[2] * w_0**2))
-            k.append(ganho[i] * w_0**2)
-
-    resultado.update({
-        'w_0': w_0,
-        'H': {
-            'zeros': z,
-            'polos': p,
-            'ganho': k
-        }
-    })
-
-    return resultado
