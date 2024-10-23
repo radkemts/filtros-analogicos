@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Resultado Butterworth{% endblock %}
+
+{% block content %}
+<h2>Resultado do Filtro Passa-baixas Butterworth</h2>
+<section class="sub-container">
+    <div class="container-especificacoes">
+        <h3>Especificações:</h3>
+        <div class="lista-especificacoes">
+            <p>a<sub>pass</sub>: {{ result['a_pass'] | int }} dB</p>
+            <p>a<sub>stop</sub>: {{ result['a_stop'] | int }} dB</p>
+            <p>
+                {% if result.figure_unit == 'hertz' %}
+                    f<sub>pass</sub>: {{ result.f_pass1 | int }} Hz
+                {% else %}
+                    &omega;<sub>pass</sub>: {{ result.w_pass1 | float | round(2) }} rad/s
+                {% endif %}
+            </p>
+            <p>
+                {% if result.figure_unit == 'hertz' %}
+                    f<sub>stop</sub>: {{ result.f_stop1 | int }} Hz
+                {% else %}
+                    &omega;<sub>stop</sub>: {{ result.w_stop1 | float | round(2) }} rad/s
+                {% endif %}
+            </p>
+        </div>
+    </div>
+    <div class="container-imagem">
+        <a href="{{ url_for('static', filename='img/output.svg') }}" data-fancybox data-caption="Circuito">
+            <img src="{{ url_for('static', filename='img/output.svg') }}" alt="Resultado do filtro projetado.">
+        </a>
+    </div>
+</section>
+
+{% endblock %}

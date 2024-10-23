@@ -20,5 +20,16 @@ $(document).ready(function() {
 
         $(this).val(newValue);
     });
-    renderMathInElement(document.querySelector('.latex'));
+
+    Fancybox.bind('[data-fancybox]', {
+        animationEffect: 'fade',
+        on: {
+            ready: (instance) => {
+                const backdrop = document.querySelector('.fancybox__backdrop');
+                if (backdrop) {
+                    backdrop.style.backgroundColor = 'white';
+                }
+            }
+        }
+    });
 });

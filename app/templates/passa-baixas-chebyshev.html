@@ -3,47 +3,31 @@
 {% block title %}Resultado Chebyshev{% endblock %}
 
 {% block content %}
-    <h2>Resultado do Filtro Passa-baixas Chebyshev</h2>
-    <section>
+<h2>Resultado do Filtro Passa-baixas Chebyshev</h2>
+<section>
+    <div class="especificacoes">
         <p>Especificações:</p>
-        <p>a<sub>pass</sub>: {{ resultado['a_pass'] | int }} dB</p>
-        <p>a<sub>stop</sub>: {{ resultado['a_stop'] | int }} dB</p>
+        <p>a<sub>pass</sub>: {{ result.a_pass | int }} dB</p>
+        <p>a<sub>stop</sub>: {{ result.a_stop | int }} dB</p>
         <p>
-            {% if resultado['unidade'] == 'hertz' %}
-                f<sub>pass1</sub>: {{ resultado['f_pass1'] | int }} Hz
+            {% if result.unidade == 'hertz' %}
+                f<sub>pass1</sub>: {{ result.f_pass1 | int }} Hz
             {% else %}
-                &omega;<sub>pass1</sub>: {{ resultado['f_pass1'] | float }} rad/s
+                &omega;<sub>pass1</sub>: {{ result.f_pass1 | float | round(2) }} rad/s
             {% endif %}
         </p>
         <p>
-            {% if resultado['unidade'] == 'hertz' %}
-                f<sub>stop1</sub>: {{ resultado['f_stop1'] | int }} Hz
+            {% if result.unidade == 'hertz' %}
+                f<sub>stop1</sub>: {{ result.f_stop1 | int }} Hz
             {% else %}
-                &omega;<sub>stop1</sub>: {{ resultado['f_stop1'] | float }} rad/s
+                &omega;<sub>stop1</sub>: {{ result.f_stop1 | float | round(2) }} rad/s
             {% endif %}
         </p>
-        {% if resultado['f_pass2'] is not none %}
-            <p>
-                {% if resultado['unidade'] == 'hertz' %}
-                    f<sub>pass2</sub>: {{ resultado['f_pass2'] | int }} Hz
-                {% else %}
-                    &omega;<sub>pass2</sub>: {{ resultado['f_pass2'] | float }} rad/s
-                {% endif %}
-            </p>
-        {% endif %}
-        {% if resultado['f_stop2'] is not none %}
-            <p>
-                {% if resultado['unidade'] == 'hertz' %}
-                    f<sub>stop2</sub>: {{ resultado['f_stop2'] | int }} Hz
-                {% else %}
-                    &omega;<sub>stop2</sub>: {{ resultado['f_stop2'] | float }} rad/s
-                {% endif %}
-            </p>
-        {% endif %}
-    </section>
-    <section>
-        {% block resultado %}
-            <pre>{{ resultado | tojson(4) }}</pre>
-        {% endblock %}
-    </section>
+    </div>
+    <div class="container-imagem">
+        <a href="{{ url_for('static', filename='img/output.svg') }}" data-fancybox data-caption="circuito">
+            <img src="{{ url_for('static', filename='img/output.svg') }}" alt="Resultado do filtro projetado.">
+        </a>
+    </div>
+</section>
 {% endblock %}

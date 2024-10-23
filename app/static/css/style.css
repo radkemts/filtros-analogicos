@@ -50,14 +50,25 @@ body {
     text-align: left;
 }
 
-.especificacoes {
+.container-especificacoes {
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     margin-bottom: 30px;
 }
 
-.container-imagem {
-    text-align: center;
+.lista-especificacoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.lista-especificacoes p {
+    margin: 0 5px;
+}
+
+.container-imagem h3 {
+    text-align: left;
 }
 
 .container-imagem img {
@@ -115,6 +126,11 @@ body {
     border-style: none;
     padding: 10px;
     margin-right: 0;
+}
+
+input:disabled + label {
+    text-decoration: line-through;
+    opacity: 0.5;
 }
 
 .botao-enviar {
