@@ -65,12 +65,14 @@ class DenormalizedFilters(NormalizedFilters):
     def create_low_pass_chebyshev(self, a_pass: float|int, a_stop: float|int, f_pass: float|int, f_stop: float|int) -> 'DenormalizedFilters':
         self.a_pass = a_pass
         self.a_stop = a_stop
+        self.f_pass1 = f_pass
+        self.f_stop1 = f_stop
         self.w_pass1 = 2 * np.pi * f_pass
         self.w_stop1 = 2 * np.pi * f_stop
         self.w_r = self.w_stop1 / self.w_pass1
         self.w_0 = self.w_pass1
 
-        handle = super().create_butterworth(self.a_pass, self.a_stop, self.w_r)
+        handle = super().create_chebyshev(self.a_pass, self.a_stop, self.w_r)
 
         self._denormalize_low_pass(handle.n_z, handle.n_p, handle.n_k)
 

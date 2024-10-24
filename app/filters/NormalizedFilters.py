@@ -89,8 +89,8 @@ class NormalizedFilters:
         for i in range(self.m + 1):
             self.phi.append((np.pi * (2 * i + 1)) / (2 * self.n))
 
-            self.sigma.append(-np.sinh(self.d[i]) * np.sin(self.phi[i]))
-            self.omega.append(np.cosh(self.d[i]) * np.cos(self.phi[i]))
+            self.sigma.append(-np.sinh(self.d) * np.sin(self.phi[i]))
+            self.omega.append(np.cosh(self.d) * np.cos(self.phi[i]))
 
             self.n_z.append((0, 0, 0))
             self.n_p.append((1, -2 * self.sigma[i], self.sigma[i] ** 2 + self.omega[i] ** 2))

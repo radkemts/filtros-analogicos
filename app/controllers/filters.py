@@ -27,11 +27,15 @@ def filter_design(request):
 
             if filter_approx == 'butterworth':
                 filter_handle.create_low_pass_butterworth(a_pass, a_stop, f_pass1, f_stop1)
-                filter_handle.filter_type = 'low-pass'
+            elif filter_approx == 'chebyshev':
+                filter_handle.create_low_pass_chebyshev(a_pass, a_stop, f_pass1, f_stop1)
+
+            filter_handle.filter_type = 'low-pass'
 
             circuit_handle = ComponentsCalculator()
             circuit_handle.calculate_low_pass_components(filter_handle.d_p)
             circuit_handle.save_circuit()
+
         else:
             # High Pass
             pass
