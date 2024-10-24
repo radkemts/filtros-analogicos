@@ -1,22 +1,10 @@
 import math
 import svgwrite
 
-def eng_format(value: float|int) -> str:
+def eng_format(value: float | int) -> str:
     """
-        Formats a numerical value into engineering notation with appropriate SI prefixes.
-
-        This function converts a given numeric value into a string representation using
-        engineering notation. It uses SI prefixes (e.g., k, M, G) for values that can be
-        expressed in powers of ten. The function handles both positive and negative values
-        and formats integers without decimal places.
-
-        Args:
-           value (float or int): The numeric value to be formatted.
-
-        Returns:
-           str: The formatted string representation of the value in engineering notation.
+    Formats a numerical value into engineering notation with appropriate SI prefixes.
     """
-
     prefixes = {
         -12: 'p',
         -9: 'n',
@@ -41,6 +29,8 @@ def eng_format(value: float|int) -> str:
 
     if abs(scaled_value - round(scaled_value)) < 10e-12:
         scaled_value = round(scaled_value)
+
+    scaled_value = float(scaled_value)
 
     if exponent in prefixes:
         if scaled_value.is_integer():
