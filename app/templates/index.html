@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
+
+    <title>Filtros Analógicos</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.14.4/sweetalert2.min.css" integrity="sha512-Xxs33QtURTKyRJi+DQ7EKwWzxpDlLSqjC7VYwbdWW9zdhrewgsHoim8DclqjqMlsMeiqgAi51+zuamxdEP2v1Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.14.4/sweetalert2.min.js" integrity="sha512-a/ljmGyCvVDl+QZXCxw/6hKcG4V7Syo7qmb9lUFTwrP12lCCItvQKeTMBMjtpa+3RE6UZ7gk+/IZzj4H04y4ng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</head>
+<body>
+    <header class="container">
+        <h1><img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo do AnalogFilters."></h1>
+    </header>
+
+    <main class="container">
+        <form class="formulario" method="post" action="/result">
+            <fieldset class="fieldset">
+                <legend>Filtro:</legend>
+                <div class="div-input-radio">
+                    <input id="low-pass" name="filter" type="radio" value="low-pass" checked required>
+                    <label for="low-pass">Passa Baixas</label>
+                </div>
+                <div class="div-input-radio">
+                    <input id="high-pass" name="filter" type="radio" value="high-pass" required disabled>
+                    <label for="high-pass">Passa Altas</label>
+                </div>
+                <div class="div-input-radio">
+                    <input id="band-pass" name="filter" type="radio" value="band-pass" required disabled>
+                    <label for="band-pass">Passa Banda</label>
+                </div>
+                <div class="div-input-radio">
+                    <input id="band-reject" name="filter" type="radio" value="band-reject" required disabled>
+                    <label for="band-reject">Rejeita Banda</label>
+                </div>
+            </fieldset>
+            <fieldset class="fieldset">
+                <legend>Aproximação:</legend>
+                <div class="div-input-radio">
+                    <input id="butterworth" name="approx" type="radio" value="butterworth" checked required>
+                    <label for="butterworth">Butterworth</label>
+                </div>
+                <div class="div-input-radio">
+                    <input id="chebyshev" name="approx" type="radio" value="chebyshev" required>
+                    <label for="chebyshev">Chebyshev</label>
+                </div>
+                <div class="div-input-radio">
+                    <input id="chebyshev-inverso" name="approx" type="radio" value="chebyshev-inverso" required disabled>
+                    <label for="chebyshev-inverso">Chebyshev Inverso</label>
+                </div>
+                <div class="div-input-radio">
+                    <input id="eliptico" name="approx" type="radio" value="eliptico" required disabled>
+                    <label for="eliptico">Elíptico</label>
+                </div>
+            </fieldset>
+            <fieldset id="fieldset-especificacoes" class="fieldset">
+                <legend>Especificações:</legend>
+                <div class="div-input-text">
+                    <input id="a-pass" name="a-pass" type="text" required>
+                    <label for="a-pass">a<sub>pass</sub></label>
+                </div>
+                <div class="div-input-text">
+                    <input id="a-stop" name="a-stop" type="text" required>
+                    <label for="a-stop">a<sub>stop</sub></label>
+                </div>
+                <div class="div-input-text">
+                    <input id="f-pass1" name="f-pass1" type="text" required>
+                    <label for="f-pass1">f<sub>pass1</sub></label>
+                </div>
+                <div class="div-input-text">
+                    <input id="f-stop1" name="f-stop1" type="text" required>
+                    <label for="f-stop1">f<sub>stop1</sub></label>
+                </div>
+                <div class="div-input-text">
+                    <input id="f-pass2" name="f-pass2" type="text" disabled>
+                    <label for="f-pass2">f<sub>pass2</sub></label>
+                </div>
+                <div class="div-input-text">
+                    <input id="f-stop2" name="f-stop2" type="text" disabled>
+                    <label for="f-stop2">f<sub>stop2</sub></label>
+                </div>
+            </fieldset>
+            <fieldset class="fieldset">
+                <legend>Unidade:</legend>
+                <div class="div-input-radio">
+                    <input id="hertz" name="unit" type="radio" value="hertz" checked required>
+                    <label for="hertz">Hz</label>
+                </div>
+                <div class="div-input-radio">
+                    <input id="radian" name="unit" type="radio" value="radian" required>
+                    <label for="radian">rad/s</label>
+                </div>
+            </fieldset>
+            <input class="botao-enviar" type="submit" value="Projetar">
+        </form>
+        <div id="resultado"></div>
+    </main>
+
+    <footer class="container">
+        <p>Desenvolvido por <a href="https://www.linkedin.com/in/mateus-radke/">Mateus Radke</a></p>
+    </footer>
+</body>
+</html>
